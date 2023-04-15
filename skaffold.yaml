@@ -1,0 +1,18 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+metadata:
+  name: tonic-example
+build:
+  local:
+    push: false
+  artifacts:
+    - image: tokio-example/base
+      docker:
+        dockerfile: base.dockerfile
+requires:
+- configs:
+  - server
+  path: ./crates/server
+- configs:
+  - client
+  path: ./crates/client

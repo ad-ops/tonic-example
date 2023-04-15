@@ -1,0 +1,21 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+metadata:
+  name: server
+build:
+  local:
+    push: false
+  artifacts:
+    - image: tokio-example/server
+      docker:
+        dockerfile: Dockerfile
+      requires:
+        - image: tokio-example/base
+          alias: BASE
+    # - image: tokio-example/base
+    #   docker:
+    #     dockerfile: base.dockerfile
+    #   context: ../..
+manifests:
+  rawYaml:
+    - k8s/*
