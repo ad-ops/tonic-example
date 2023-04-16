@@ -2,6 +2,9 @@ apiVersion: skaffold/v4beta4
 kind: Config
 metadata:
   name: client
+requires:
+  - configs: ["server"]
+    path: ../server/skaffold.yaml 
 build:
   local:
     push: false
@@ -12,10 +15,8 @@ build:
       requires:
         - image: tokio-example/base
           alias: BASE
-    # - image: tokio-example/base
-    #   docker:
-    #     dockerfile: base.dockerfile
-    #   context: ../..
 manifests:
   rawYaml:
     - k8s/*
+deploy:
+  kubectl: {}

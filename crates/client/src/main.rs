@@ -16,8 +16,9 @@ async fn main() -> Result<()> {
         .with_target(false)
         .compact()
         .init();
-    
-    let mut client = GreeterClient::connect("http://[::1]:3000").await?;
+    let server_addr = std::env::var("SERVER_HOST")
+        .unwrap_or("http://localhost:3000".to_string());
+    let mut client = GreeterClient::connect(server_addr).await?;
     loop {
         let request = tonic::Request::new(HelloRequest {
             name: format!("time: {:?}!", tokio::time::Instant::now()).into(),

@@ -19,10 +19,10 @@ async fn main() -> Result<()> {
         .with_target(false)
         .compact()
         .init();
-    let addr = "[::1]:3000".parse()?;
+    let addr = "0.0.0.0:3000".parse()?;
     let greeter = MyGreeter::default();
 
-    info!("Starting gRPC Server on 3000...");
+    info!("Starting gRPC Server on 0.0.0.0:3000...");
     Server::builder()
         .add_service(GreeterServer::new(greeter))
         .serve(addr)

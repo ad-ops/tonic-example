@@ -1,1 +1,7 @@
 target
+skaffold.yaml
+**/*/skaffold.yaml
+**/*/k8s/*
+*.md
+.gitignore
+.dockerignore

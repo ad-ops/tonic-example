@@ -12,10 +12,8 @@ build:
       requires:
         - image: tokio-example/base
           alias: BASE
-    # - image: tokio-example/base
-    #   docker:
-    #     dockerfile: base.dockerfile
-    #   context: ../..
 manifests:
   rawYaml:
     - k8s/*
+deploy:
+  kubectl: {}
